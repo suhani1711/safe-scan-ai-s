@@ -21,7 +21,7 @@ export const Route = createFileRoute("/scan/sms")({
       },
     ],
   }),
-  component: SmsScanner;
+  component: SmsScanner,
 });
 
 function SmsScanner() {
