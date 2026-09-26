@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FamilyRouteImport } from './routes/family'
 import { Route as ScanLinkRouteImport } from './routes/scan.link'
 import { Route as ScanQrRouteImport } from './routes/scan.qr'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FamilyRoute = FamilyRouteImport.update({
@@ -50,6 +56,7 @@ const ScanSmsRoute = ScanSmsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/qr': typeof ScanQrRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/qr': typeof ScanQrRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/qr': typeof ScanQrRoute
@@ -75,13 +84,27 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/community' | '/family' | '/scan/link' | '/scan/qr' | '/scan/sms'
+    | '/'
+    | '/community'
+    | '/dashboard'
+    | '/family'
+    | '/scan/link'
+    | '/scan/qr'
+    | '/scan/sms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/community' | '/family' | '/scan/link' | '/scan/qr' | '/scan/sms'
+  to:
+    | '/'
+    | '/community'
+    | '/dashboard'
+    | '/family'
+    | '/scan/link'
+    | '/scan/qr'
+    | '/scan/sms'
   id:
     | '__root__'
     | '/'
     | '/community'
+    | '/dashboard'
     | '/family'
     | '/scan/link'
     | '/scan/qr'
@@ -91,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CommunityRoute: typeof CommunityRoute
+  DashboardRoute: typeof DashboardRoute
   FamilyRoute: typeof FamilyRoute
   ScanLinkRoute: typeof ScanLinkRoute
   ScanQrRoute: typeof ScanQrRoute
@@ -111,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/family': {
@@ -147,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CommunityRoute: CommunityRoute,
+  DashboardRoute: DashboardRoute,
   FamilyRoute: FamilyRoute,
   ScanLinkRoute: ScanLinkRoute,
   ScanQrRoute: ScanQrRoute,
