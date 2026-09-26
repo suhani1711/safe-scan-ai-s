@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FamilyRouteImport } from './routes/family'
+import { Route as ScanLinkRouteImport } from './routes/scan.link'
+import { Route as ScanQrRouteImport } from './routes/scan.qr'
+import { Route as ScanSmsRouteImport } from './routes/scan.sms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FamilyRoute = FamilyRouteImport.update({
+  id: '/family',
+  path: '/family',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScanLinkRoute = ScanLinkRouteImport.update({
+  id: '/scan/link',
+  path: '/scan/link',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScanQrRoute = ScanQrRouteImport.update({
+  id: '/scan/qr',
+  path: '/scan/qr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScanSmsRoute = ScanSmsRouteImport.update({
+  id: '/scan/sms',
+  path: '/scan/sms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
+  '/family': typeof FamilyRoute
+  '/scan/link': typeof ScanLinkRoute
+  '/scan/qr': typeof ScanQrRoute
+  '/scan/sms': typeof ScanSmsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
+  '/family': typeof FamilyRoute
+  '/scan/link': typeof ScanLinkRoute
+  '/scan/qr': typeof ScanQrRoute
+  '/scan/sms': typeof ScanSmsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/dashboard': typeof DashboardRoute
+  '/family': typeof FamilyRoute
+  '/scan/link': typeof ScanLinkRoute
+  '/scan/qr': typeof ScanQrRoute
+  '/scan/sms': typeof ScanSmsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/community'
+    | '/dashboard'
+    | '/family'
+    | '/scan/link'
+    | '/scan/qr'
+    | '/scan/sms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/community'
+    | '/dashboard'
+    | '/family'
+    | '/scan/link'
+    | '/scan/qr'
+    | '/scan/sms'
+  id:
+    | '__root__'
+    | '/'
+    | '/community'
+    | '/dashboard'
+    | '/family'
+    | '/scan/link'
+    | '/scan/qr'
+    | '/scan/sms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityRoute: typeof CommunityRoute
+  DashboardRoute: typeof DashboardRoute
+  FamilyRoute: typeof FamilyRoute
+  ScanLinkRoute: typeof ScanLinkRoute
+  ScanQrRoute: typeof ScanQrRoute
+  ScanSmsRoute: typeof ScanSmsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/family': {
+      id: '/family'
+      path: '/family'
+      fullPath: '/family'
+      preLoaderRoute: typeof FamilyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scan/link': {
+      id: '/scan/link'
+      path: '/scan/link'
+      fullPath: '/scan/link'
+      preLoaderRoute: typeof ScanLinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scan/qr': {
+      id: '/scan/qr'
+      path: '/scan/qr'
+      fullPath: '/scan/qr'
+      preLoaderRoute: typeof ScanQrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scan/sms': {
+      id: '/scan/sms'
+      path: '/scan/sms'
+      fullPath: '/scan/sms'
+      preLoaderRoute: typeof ScanSmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityRoute: CommunityRoute,
+  DashboardRoute: DashboardRoute,
+  FamilyRoute: FamilyRoute,
+  ScanLinkRoute: ScanLinkRoute,
+  ScanQrRoute: ScanQrRoute,
+  ScanSmsRoute: ScanSmsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
