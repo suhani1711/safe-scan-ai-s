@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const THEME_KEY = "safescan-theme";
 
 const LINKS = [
   { to: "/", label: "Home", exact: true },
@@ -13,6 +15,22 @@ const LINKS = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === "light") {
+      setTheme("light");
+      document.documentElement.classList.add("light");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.classList.toggle("light", next === "light");
+    localStorage.setItem(THEME_KEY, next);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
@@ -41,6 +59,14 @@ export function SiteNav() {
           <span className="hidden items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-safe sm:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-safe animate-pulse-ring" /> PROTECTION ACTIVE
           </span>
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            title={theme === "dark" ? "Light theme" : "Dark theme"}
+            className="rounded-lg border border-border px-2.5 py-1.5 text-sm transition-colors hover:bg-secondary"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
