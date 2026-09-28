@@ -72,6 +72,32 @@
   --grid: oklch(0.99 0 0 / 5%);
 }
 
+.light {
+  --background: oklch(0.97 0.008 240);
+  --foreground: oklch(0.22 0.03 255);
+  --card: oklch(0.99 0.004 240);
+  --card-foreground: oklch(0.22 0.03 255);
+  --popover: oklch(0.99 0.004 240);
+  --popover-foreground: oklch(0.22 0.03 255);
+  --primary: oklch(0.62 0.13 210);
+  --primary-foreground: oklch(0.98 0.005 250);
+  --secondary: oklch(0.93 0.015 240);
+  --secondary-foreground: oklch(0.25 0.03 255);
+  --muted: oklch(0.94 0.012 240);
+  --muted-foreground: oklch(0.45 0.03 250);
+  --accent: oklch(0.55 0.16 275);
+  --accent-foreground: oklch(0.98 0.005 250);
+  --destructive: oklch(0.58 0.2 22);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.25 0.03 255 / 14%);
+  --input: oklch(0.25 0.03 255 / 18%);
+  --ring: oklch(0.62 0.13 210);
+  --safe: oklch(0.6 0.15 160);
+  --warn: oklch(0.68 0.15 80);
+  --danger: oklch(0.58 0.2 22);
+  --grid: oklch(0.25 0.03 255 / 6%);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -95,6 +121,14 @@
     min-height: 100vh;
   }
 
+  .light body {
+    background-image:
+      radial-gradient(60rem 40rem at 15% -10%, oklch(0.62 0.13 210 / 12%), transparent 70%),
+      radial-gradient(50rem 35rem at 95% 0%, oklch(0.55 0.16 275 / 10%), transparent 70%),
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  }
+
   h1,
   h2,
   h3 {
@@ -114,6 +148,17 @@
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 8%) inset,
     0 20px 50px -25px oklch(0 0 0 / 70%);
+}
+
+.light .glass {
+  background: linear-gradient(
+    145deg,
+    oklch(1 0 0 / 75%),
+    oklch(1 0 0 / 55%)
+  );
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 60%) inset,
+    0 20px 50px -25px oklch(0.3 0.05 255 / 35%);
 }
 
 @utility glow-primary {
