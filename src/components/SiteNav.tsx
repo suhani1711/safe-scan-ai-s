@@ -27,7 +27,7 @@ export function SiteNav() {
             <Link
               key={l.to}
               to={l.to}
-              activeOptions={"exact" in l ? { exact: true } : undefined}
+              activeOptions={{ exact: "exact" in l }}
               activeProps={{ className: "bg-secondary text-foreground" }}
               inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
               className="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
@@ -58,7 +58,7 @@ export function SiteNav() {
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
-              activeOptions={"exact" in l ? { exact: true } : undefined}
+              activeOptions={{ exact: "exact" in l }}
               activeProps={{ className: "bg-secondary text-foreground" }}
               className="rounded-lg px-3 py-2 text-sm text-muted-foreground"
             >

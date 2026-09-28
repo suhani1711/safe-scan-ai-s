@@ -15,7 +15,7 @@ export type ScanResult = {
   positives: string[];
   factors: Factor[];
   action: string;
-  dna?: { pattern: string; reports: number; variations: number; domains: number; banks: number };
+  dna?: { pattern: string; reports: number; variations: number; domains: number; banks: number } | undefined;
   meta?: { label: string; value: string }[];
 };
 
