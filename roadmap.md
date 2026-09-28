@@ -1,4 +1,4 @@
-# ScamShield AI — roadmap
+# SafeScan AI — roadmap
 
 - [x] Cyber design system (dark navy / cyan / risk tokens, glassmorphism)
 - [x] Scan engine (link, SMS, QR/UPI heuristics + trust score)

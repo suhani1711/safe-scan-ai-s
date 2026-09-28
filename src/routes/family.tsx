@@ -5,12 +5,12 @@ import { PageHeader } from "@/components/PageHeader";
 export const Route = createFileRoute("/family")({
   head: () => ({
     meta: [
-      { title: "Family Protection Mode — ScamShield AI" },
+      { title: "Family Protection Mode — SafeScan AI" },
       {
         name: "description",
         content: "Shield parents and grandparents, and send an emergency alert to a guardian when a high-risk scam appears.",
       },
-      { property: "og:title", content: "Family Protection Mode — ScamShield AI" },
+      { property: "og:title", content: "Family Protection Mode — SafeScan AI" },
       {
         property: "og:description",
         content: "Turn on protection for the people most targeted by scams and alert a guardian instantly.",

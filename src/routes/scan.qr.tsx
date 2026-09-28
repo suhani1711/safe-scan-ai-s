@@ -9,12 +9,12 @@ import { recordScan } from "@/lib/store";
 export const Route = createFileRoute("/scan/qr")({
   head: () => ({
     meta: [
-      { title: "QR Trust Check — ScamShield AI" },
+      { title: "QR Trust Check — SafeScan AI" },
       {
         name: "description",
         content: "Upload or scan a payment QR to verify the merchant identity and UPI handle before you pay.",
       },
-      { property: "og:title", content: "QR Trust Check — ScamShield AI" },
+      { property: "og:title", content: "QR Trust Check — SafeScan AI" },
       {
         property: "og:description",
         content: "Decode the UPI payment string inside a QR and get a trust score before money leaves your account.",

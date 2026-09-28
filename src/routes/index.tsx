@@ -3,13 +3,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ScamShield AI — Scan Before You Trust" },
+      { title: "SafeScan AI — Scan Before You Trust" },
       {
         name: "description",
         content:
           "Check a suspicious SMS, QR code or link before you click or pay. AI trust scores, threat breakdowns and community scam intelligence.",
       },
-      { property: "og:title", content: "ScamShield AI — Scan Before You Trust" },
+      { property: "og:title", content: "SafeScan AI — Scan Before You Trust" },
       {
         property: "og:description",
         content: "AI-powered protection against fake SMS, malicious QR codes and phishing links.",
@@ -53,7 +53,7 @@ function Index() {
           🛡️ AI PROTECTION ACTIVE
         </span>
         <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-          <span className="text-gradient">ScamShield AI</span>
+          <span className="text-gradient">SafeScan AI</span>
           <span className="mt-2 block text-3xl text-foreground md:text-5xl">Scan Before You Trust</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground md:text-lg">
