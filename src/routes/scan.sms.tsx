@@ -9,12 +9,12 @@ import { recordScan } from "@/lib/store";
 export const Route = createFileRoute("/scan/sms")({
   head: () => ({
     meta: [
-      { title: "SMS Scam Detector — ScamShield AI" },
+      { title: "SMS Scam Detector — SafeScan AI" },
       {
         name: "description",
         content: "Paste a suspicious SMS and see the risk level, trust score and exactly why it is dangerous.",
       },
-      { property: "og:title", content: "SMS Scam Detector — ScamShield AI" },
+      { property: "og:title", content: "SMS Scam Detector — SafeScan AI" },
       {
         property: "og:description",
         content: "Detect fake KYC alerts, banking scams, lottery and refund scams hidden in text messages.",

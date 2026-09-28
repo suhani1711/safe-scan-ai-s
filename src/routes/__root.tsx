@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ScamShield AI — Scan Before You Trust" },
+      { title: "SafeScan AI — Scan Before You Trust" },
       {
         name: "description",
         content: "AI-powered protection against fake SMS, malicious QR codes and phishing links.",
@@ -132,7 +132,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-          🛡️ ScamShield AI — your digital safety shield. Prototype: analysis runs on-device with
+          🛡️ SafeScan AI — your digital safety shield. Prototype: analysis runs on-device with
           heuristic AI rules.
         </footer>
       </div>

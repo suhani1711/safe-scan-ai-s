@@ -7,12 +7,12 @@ import { addReport, useStore, type ScanKind } from "@/lib/store";
 export const Route = createFileRoute("/community")({
   head: () => ({
     meta: [
-      { title: "Community Scam Intelligence — ScamShield AI" },
+      { title: "Community Scam Intelligence — SafeScan AI" },
       {
         name: "description",
         content: "Live feed of scams reported by the community. Report an SMS, QR or link to protect everyone else.",
       },
-      { property: "og:title", content: "Community Scam Intelligence — ScamShield AI" },
+      { property: "og:title", content: "Community Scam Intelligence — SafeScan AI" },
       {
         property: "og:description",
         content: "One report syncs to every user. See the most reported SMS, QR and link scams right now.",

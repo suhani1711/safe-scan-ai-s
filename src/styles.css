@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * ScamShield AI design system — cybersecurity dashboard.
+ * SafeScan AI design system — cybersecurity dashboard.
  * Dark navy base, cyan highlights, semantic risk colors (safe/warn/danger).
  * All colors are oklch tokens. Never hardcode colors in components.
  */

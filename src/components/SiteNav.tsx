@@ -19,7 +19,7 @@ export function SiteNav() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
           <span className="text-xl">🛡️</span>
-          <span className="text-gradient">ScamShield AI</span>
+          <span className="text-gradient">SafeScan AI</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

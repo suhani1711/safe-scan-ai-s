@@ -6,15 +6,15 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Protection Dashboard — ScamShield AI" },
+      { title: "Protection Dashboard — SafeScan AI" },
       {
         name: "description",
         content: "Your scan history, threats blocked and detected Scam DNA patterns in one cybersecurity dashboard.",
       },
-      { property: "og:title", content: "Protection Dashboard — ScamShield AI" },
+      { property: "og:title", content: "Protection Dashboard — SafeScan AI" },
       {
         property: "og:description",
-        content: "Track today's SMS, QR and link scans plus the threats ScamShield AI blocked for you.",
+        content: "Track today's SMS, QR and link scans plus the threats SafeScan AI blocked for you.",
       },
     ],
   }),
@@ -32,7 +32,7 @@ function Dashboard() {
       <PageHeader
         icon="📊"
         title="Hello, Suhani 👋"
-        subtitle="Your protection status and everything ScamShield AI checked for you."
+        subtitle="Your protection status and everything SafeScan AI checked for you."
       />
 
       <div className="glass mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl p-6">
@@ -86,7 +86,7 @@ function Dashboard() {
         <h2 className="font-display text-lg font-semibold">🧬 Scam DNA Detected</h2>
         <p className="mt-2 font-mono text-sm text-primary">Fake KYC + Urgency + Banking + Link</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Hundreds of different messages share the same underlying template. ScamShield AI groups them into one
+          Hundreds of different messages share the same underlying template. SafeScan AI groups them into one
           family, so a brand-new variation is still recognised on first sight.
         </p>
         <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">

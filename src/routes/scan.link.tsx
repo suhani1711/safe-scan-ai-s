@@ -9,12 +9,12 @@ import { recordScan } from "@/lib/store";
 export const Route = createFileRoute("/scan/link")({
   head: () => ({
     meta: [
-      { title: "Smart Link Scanner — ScamShield AI" },
+      { title: "Smart Link Scanner — SafeScan AI" },
       {
         name: "description",
         content: "Paste a suspicious URL and get a trust score, threat breakdown and a safe recommended action.",
       },
-      { property: "og:title", content: "Smart Link Scanner — ScamShield AI" },
+      { property: "og:title", content: "Smart Link Scanner — SafeScan AI" },
       {
         property: "og:description",
         content: "Detect look-alike bank domains, hidden redirects and phishing pages before you click.",
