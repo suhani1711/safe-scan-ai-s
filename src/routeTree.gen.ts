@@ -14,6 +14,7 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FamilyRouteImport } from './routes/family'
 import { Route as ScanLinkRouteImport } from './routes/scan.link'
+import { Route as ScanMailRouteImport } from './routes/scan.mail'
 import { Route as ScanQrRouteImport } from './routes/scan.qr'
 import { Route as ScanSmsRouteImport } from './routes/scan.sms'
 
@@ -42,6 +43,11 @@ const ScanLinkRoute = ScanLinkRouteImport.update({
   path: '/scan/link',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScanMailRoute = ScanMailRouteImport.update({
+  id: '/scan/mail',
+  path: '/scan/mail',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScanQrRoute = ScanQrRouteImport.update({
   id: '/scan/qr',
   path: '/scan/qr',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
+  '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
   '/scan/sms': typeof ScanSmsRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
+  '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
   '/scan/sms': typeof ScanSmsRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
   '/scan/link': typeof ScanLinkRoute
+  '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
   '/scan/sms': typeof ScanSmsRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/family'
     | '/scan/link'
+    | '/scan/mail'
     | '/scan/qr'
     | '/scan/sms'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/family'
     | '/scan/link'
+    | '/scan/mail'
     | '/scan/qr'
     | '/scan/sms'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/family'
     | '/scan/link'
+    | '/scan/mail'
     | '/scan/qr'
     | '/scan/sms'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   FamilyRoute: typeof FamilyRoute
   ScanLinkRoute: typeof ScanLinkRoute
+  ScanMailRoute: typeof ScanMailRoute
   ScanQrRoute: typeof ScanQrRoute
   ScanSmsRoute: typeof ScanSmsRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanLinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scan/mail': {
+      id: '/scan/mail'
+      path: '/scan/mail'
+      fullPath: '/scan/mail'
+      preLoaderRoute: typeof ScanMailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan/qr': {
       id: '/scan/qr'
       path: '/scan/qr'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   FamilyRoute: FamilyRoute,
   ScanLinkRoute: ScanLinkRoute,
+  ScanMailRoute: ScanMailRoute,
   ScanQrRoute: ScanQrRoute,
   ScanSmsRoute: ScanSmsRoute,
 }
