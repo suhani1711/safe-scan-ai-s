@@ -41,6 +41,13 @@ const SCANNERS = [
     body: "Spot look-alike domains, fake bank websites, hidden redirects and phishing pages.",
     cta: "Check Link",
   },
+  {
+    to: "/scan/mail" as const,
+    icon: "📧",
+    title: "Email Phishing Checker",
+    body: "Verify the sender domain, embedded links and language of any suspicious email.",
+    cta: "Check Mail",
+  },
 ];
 
 const FLOW = ["Scan", "AI Analysis", "Community Check", "Trust Score", "Threat Breakdown", "Safe Action"];
@@ -81,7 +88,7 @@ function Index() {
         </p>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-3">
+      <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {SCANNERS.map((s) => (
           <Link
             key={s.title}
