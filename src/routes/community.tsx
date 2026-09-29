@@ -22,7 +22,7 @@ export const Route = createFileRoute("/community")({
   component: Community,
 });
 
-const KIND_ICON: Record<ScanKind, string> = { sms: "📱", qr: "🔳", link: "🔗" };
+const KIND_ICON: Record<ScanKind, string> = { sms: "📱", qr: "🔳", link: "🔗", mail: "📧" };
 
 function Community() {
   const { reports } = useStore();
