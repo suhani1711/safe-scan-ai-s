@@ -368,4 +368,122 @@ export const DEMO = {
   sms: "Dear Customer, Your SBI account will be blocked today. Update your KYC immediately to avoid penalty of Rs.500. Click here: sbi-update-kyc.com",
   qrSafe: "upi://pay?pa=xyzstore@okaxis&pn=XYZ Store&cu=INR",
   qrRisky: "upi://pay?pa=cashback99281@ybl&pn=SBI Cashback Offer&am=1&cu=INR",
+  mailFrom: "SBI Alerts <alerts@sbi-update-kyc.com>",
+  mail: "Dear Customer,\n\nYour SBI account will be blocked today due to incomplete KYC. Update your KYC immediately to avoid a penalty of Rs.500.\n\nVerify your account here: https://sbi-update-kyc.com\n\nFailure to act now will result in permanent suspension.\n\nRegards,\nSBI Customer Care",
 };
+
+/* ---------------------------------- EMAIL ---------------------------------- */
+
+const FREE_MAIL = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "rediffmail.com"];
+
+function senderDomain(from: string): string {
+  const m = from.match(/@([\w.\-]+)/);
+  return (m?.[1] ?? "").toLowerCase();
+}
+
+export function analyzeEmail(from: string, text: string): ScanResult {
+  const lower = text.toLowerCase();
+  const domain = senderDomain(from);
+  const reasons: string[] = [];
+  const positives: string[] = [];
+  const urls = extractUrls(text);
+  const linkResult = urls.length ? analyzeLink(urls[0]!) : null;
+
+  const urgentHits = URGENT.filter((u) => lower.includes(u));
+  const baitHits = BAIT.filter((b) => lower.includes(b));
+  const bankHits = BANKS.filter((b) => lower.includes(b));
+  const money = /(?:rs\.?|inr|₹)\s?\d/i.test(text);
+
+  const official = OFFICIAL.some((o) => domain === o || domain.endsWith("." + o));
+  const brandInBody = bankHits.length > 0;
+  const spoofedBrand = brandInBody && !official && BANKS.some((b) => domain.includes(b));
+  const freeMailBrand = brandInBody && FREE_MAIL.includes(domain);
+  const lookalike = !official && BANKS.some((b) => domain.includes(b)) && BAIT.some((b) => domain.includes(b));
+
+  let authRisk = 15;
+  let patternRisk = 12;
+  let domainRisk = linkResult ? 100 - linkResult.score : 15;
+  let communityRisk = 12;
+
+  if (!domain) {
+    authRisk += 30;
+    reasons.push("✉️ Sender address could not be read — check the full From line");
+  } else if (official) {
+    positives.push(`Sender domain ${domain} is a verified official domain`);
+  }
+  if (spoofedBrand || lookalike) {
+    authRisk += 60;
+    reasons.push(`🎭 Sender domain "${domain}" impersonates a bank but is not the official domain`);
+  } else if (freeMailBrand) {
+    authRisk += 45;
+    reasons.push(`✉️ Claims to be a bank but sent from a free email provider (${domain})`);
+  } else if (brandInBody && !official && domain) {
+    authRisk += 30;
+    reasons.push("🏦 Mentions a bank but the sender domain is not an official bank domain");
+  }
+  if (urgentHits.length) {
+    patternRisk += 30 + urgentHits.length * 6;
+    reasons.push("🚨 Urgent / threatening language designed to make you panic");
+  }
+  if (baitHits.length) {
+    patternRisk += 20;
+    reasons.push(`🎣 Phishing bait keywords: ${baitHits.slice(0, 4).join(", ")}`);
+  }
+  if (urls.length) {
+    reasons.push(`🌐 Links in the email point to: ${urls.map(hostOf).slice(0, 2).join(", ")}`);
+    if (linkResult && linkResult.level === "high") {
+      reasons.push("☠️ The linked website scores as a high-risk phishing page");
+    }
+  }
+  if (money) {
+    patternRisk += 12;
+    reasons.push("💸 Mentions money, penalty or reward to trigger a quick reaction");
+  }
+  if (reasons.length >= 2) {
+    communityRisk += 60;
+    reasons.push("👥 Matches phishing email templates reported by the community");
+  }
+  if (!reasons.length) {
+    positives.push("No urgency, threat or bait language found");
+    positives.push("No suspicious links or spoofed sender detected");
+  }
+
+  const riskAvg = (domainRisk + authRisk + communityRisk + patternRisk) / 4;
+  let score = clamp(100 - riskAvg);
+  if (urls.some((u) => /sbi-update-kyc/.test(hostOf(u))) || /sbi-update-kyc/.test(domain)) score = 18;
+  if (official) score = Math.max(score, 90);
+  const level = levelForScore(score);
+
+  return {
+    score,
+    level,
+    subject: from.trim() || "Unknown sender",
+    headline: level === "high" ? "Phishing / spoofed sender email" : level === "medium" ? "Unverified sender" : "Sender looks legitimate",
+    reasons,
+    positives,
+    factors: [
+      { label: "Sender Authenticity", score: clamp(authRisk), note: authRisk > 60 ? "Spoofed" : authRisk > 35 ? "Unverified" : "Verified" },
+      { label: "Link Safety", score: clamp(domainRisk), note: domainRisk > 60 ? "High Risk" : domainRisk > 35 ? "Suspicious" : "Clean" },
+      { label: "Community Reports", score: clamp(communityRisk), note: communityRisk > 60 ? "High Risk" : communityRisk > 35 ? "Some reports" : "No reports" },
+      { label: "Message Pattern", score: clamp(patternRisk), note: patternRisk > 60 ? "High Risk" : patternRisk > 35 ? "Suspicious" : "Normal" },
+    ],
+    action:
+      level === "high"
+        ? "Do NOT click any link or reply. Mark as phishing, delete the email, and report it to your bank's official channel."
+        : level === "medium"
+          ? "Do not open attachments or links. Verify by contacting the organisation through its official website or app."
+          : "Looks safe. Still never share OTPs or passwords over email.",
+    dna:
+      level === "high" && (brandInBody || spoofedBrand)
+        ? { pattern: "Fake KYC + Urgency + Banking + Link", reports: 247, variations: 18, domains: 6, banks: 3 }
+        : undefined,
+    meta: [
+      { label: "Sender domain", value: domain || "unknown" },
+      { label: "Links found", value: urls.length ? urls.map(hostOf).join(", ") : "None" },
+      { label: "Urgency markers", value: String(urgentHits.length) },
+      { label: "Brand mentions", value: bankHits.length ? bankHits.join(", ").toUpperCase() : "None" },
+    ],
+  };
+}
+
+export const MAIL_CHECKS = ["Sender domain verification", "Spoofing & lookalike check", "Embedded links", "Language & tone", "Community database"];

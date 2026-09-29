@@ -58,6 +58,7 @@ function Dashboard() {
               ["📱 SMS", count("sms")],
               ["🔗 Links", count("link")],
               ["🔳 QR", count("qr")],
+              ["📧 Mail", count("mail")],
             ].map(([label, value]) => (
               <div key={String(label)} className="flex items-center justify-between rounded-xl bg-secondary/50 px-4 py-3">
                 <span className="text-sm">{label}</span>
@@ -119,7 +120,7 @@ function Dashboard() {
             {scans.slice(0, 8).map((s) => (
               <li key={s.id} className="flex items-center justify-between gap-4 py-3">
                 <span className="truncate text-sm">
-                  {s.kind === "sms" ? "📱" : s.kind === "qr" ? "🔳" : "🔗"} {s.subject}
+                  {s.kind === "sms" ? "📱" : s.kind === "qr" ? "🔳" : s.kind === "mail" ? "📧" : "🔗"} {s.subject}
                 </span>
                 <span className={`font-mono text-xs font-semibold ${RISK_META[s.level].text}`}>{s.score}/100</span>
               </li>

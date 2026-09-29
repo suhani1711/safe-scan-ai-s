@@ -8,6 +8,7 @@ const LINKS = [
   { to: "/scan/sms", label: "SMS" },
   { to: "/scan/qr", label: "QR" },
   { to: "/scan/link", label: "Link" },
+  { to: "/scan/mail", label: "Mail" },
   { to: "/community", label: "Community" },
   { to: "/family", label: "Family" },
   { to: "/dashboard", label: "Dashboard" },
@@ -15,20 +16,20 @@ const LINKS = [
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const saved = localStorage.getItem(THEME_KEY);
-    if (saved === "light") {
-      setTheme("light");
-      document.documentElement.classList.add("light");
+    if (saved === "dark") {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
   const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
+    const next = theme === "light" ? "dark" : "light";
     setTheme(next);
-    document.documentElement.classList.toggle("light", next === "light");
+    document.documentElement.classList.toggle("dark", next === "dark");
     localStorage.setItem(THEME_KEY, next);
   };
 
@@ -61,11 +62,11 @@ export function SiteNav() {
           </span>
           <button
             onClick={toggleTheme}
-            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-            title={theme === "dark" ? "Light theme" : "Dark theme"}
+            aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+            title={theme === "light" ? "Dark theme" : "Light theme"}
             className="rounded-lg border border-border px-2.5 py-1.5 text-sm transition-colors hover:bg-secondary"
           >
-            {theme === "dark" ? "☀️" : "🌙"}
+            {theme === "light" ? "🌙" : "☀️"}
           </button>
           <button
             onClick={() => setOpen((o) => !o)}

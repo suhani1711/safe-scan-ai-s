@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { RiskLevel } from "./scan-engine";
 
-export type ScanKind = "sms" | "qr" | "link";
+export type ScanKind = "sms" | "qr" | "link" | "mail";
 
 export type ScanEntry = {
   id: string;

@@ -22,7 +22,7 @@ export const Route = createFileRoute("/community")({
   component: Community,
 });
 
-const KIND_ICON: Record<ScanKind, string> = { sms: "📱", qr: "🔳", link: "🔗" };
+const KIND_ICON: Record<ScanKind, string> = { sms: "📱", qr: "🔳", link: "🔗", mail: "📧" };
 
 function Community() {
   const { reports } = useStore();
@@ -89,7 +89,7 @@ function Community() {
             <fieldset>
               <legend className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">Type</legend>
               <div className="mt-2 flex gap-2">
-                {(["sms", "qr", "link"] as ScanKind[]).map((k) => (
+                {(["sms", "qr", "link", "mail"] as ScanKind[]).map((k) => (
                   <button
                     key={k}
                     type="button"
