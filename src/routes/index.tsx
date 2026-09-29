@@ -73,11 +73,7 @@ function Index() {
             <Link
               key={s.to}
               to={s.to}
-              className={
-                i === 2
-                  ? "glow-primary rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
-                  : "glass rounded-xl px-6 py-3 font-semibold transition-transform hover:-translate-y-0.5"
-              }
+              className="glow-primary rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
               {s.icon} {s.cta}
             </Link>
