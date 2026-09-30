@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { RISK_META, type ScanResult } from "@/lib/scan-engine";
 import { TrustScore } from "./TrustScore";
 import { ThreatBreakdown } from "./ThreatBreakdown";
+import { AiOpinion } from "./AiOpinion";
 
 export function ScanResultView({
   result,
@@ -29,6 +30,8 @@ export function ScanResultView({
           <ThreatBreakdown factors={result.factors} />
         </div>
       </div>
+
+      <AiOpinion content={result.subject} ruleScore={result.score} />
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="glass rounded-2xl p-6">
