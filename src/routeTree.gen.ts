@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ExtensionRouteImport } from './routes/extension'
 import { Route as FamilyRouteImport } from './routes/family'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as ShareRouteImport } from './routes/share'
 import { Route as ScanLinkRouteImport } from './routes/scan.link'
 import { Route as ScanMailRouteImport } from './routes/scan.mail'
 import { Route as ScanQrRouteImport } from './routes/scan.qr'
@@ -33,9 +36,24 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExtensionRoute = ExtensionRouteImport.update({
+  id: '/extension',
+  path: '/extension',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FamilyRoute = FamilyRouteImport.update({
   id: '/family',
   path: '/family',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShareRoute = ShareRouteImport.update({
+  id: '/share',
+  path: '/share',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScanLinkRoute = ScanLinkRouteImport.update({
@@ -63,7 +81,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/extension': typeof ExtensionRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
+  '/share': typeof ShareRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -73,7 +94,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/extension': typeof ExtensionRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
+  '/share': typeof ShareRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -84,7 +108,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
+  '/extension': typeof ExtensionRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
+  '/share': typeof ShareRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -96,7 +123,10 @@ export interface FileRouteTypes {
     | '/'
     | '/community'
     | '/dashboard'
+    | '/extension'
     | '/family'
+    | '/help'
+    | '/share'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -106,7 +136,10 @@ export interface FileRouteTypes {
     | '/'
     | '/community'
     | '/dashboard'
+    | '/extension'
     | '/family'
+    | '/help'
+    | '/share'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -116,7 +149,10 @@ export interface FileRouteTypes {
     | '/'
     | '/community'
     | '/dashboard'
+    | '/extension'
     | '/family'
+    | '/help'
+    | '/share'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -127,7 +163,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CommunityRoute: typeof CommunityRoute
   DashboardRoute: typeof DashboardRoute
+  ExtensionRoute: typeof ExtensionRoute
   FamilyRoute: typeof FamilyRoute
+  HelpRoute: typeof HelpRoute
+  ShareRoute: typeof ShareRoute
   ScanLinkRoute: typeof ScanLinkRoute
   ScanMailRoute: typeof ScanMailRoute
   ScanQrRoute: typeof ScanQrRoute
@@ -157,11 +196,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/extension': {
+      id: '/extension'
+      path: '/extension'
+      fullPath: '/extension'
+      preLoaderRoute: typeof ExtensionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/family': {
       id: '/family'
       path: '/family'
       fullPath: '/family'
       preLoaderRoute: typeof FamilyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/share': {
+      id: '/share'
+      path: '/share'
+      fullPath: '/share'
+      preLoaderRoute: typeof ShareRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scan/link': {
@@ -199,7 +259,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CommunityRoute: CommunityRoute,
   DashboardRoute: DashboardRoute,
+  ExtensionRoute: ExtensionRoute,
   FamilyRoute: FamilyRoute,
+  HelpRoute: HelpRoute,
+  ShareRoute: ShareRoute,
   ScanLinkRoute: ScanLinkRoute,
   ScanMailRoute: ScanMailRoute,
   ScanQrRoute: ScanQrRoute,

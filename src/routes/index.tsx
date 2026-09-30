@@ -60,12 +60,10 @@ function Index() {
           🛡️ AI PROTECTION ACTIVE
         </span>
         <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] md:text-7xl">
-          <span className="text-gradient">SafeScan AI</span>
-          <span className="mt-2 block text-3xl text-foreground md:text-5xl">Scan Before You Trust</span>
+          <span className="text-gradient">Detect Scams Before They Detect You.</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground md:text-lg">
-          AI-powered protection against fake SMS, malicious QR codes and phishing links. Check anything
-          suspicious before you click or pay.
+          AI-powered protection against phishing links, scam messages, malicious QR codes and suspicious emails.
         </p>
 
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -80,8 +78,13 @@ function Index() {
           ))}
         </div>
         <p className="mt-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          Your digital safety shield
+          Your AI Shield Against Digital Scams
         </p>
+        <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm">
+          <Link to="/extension" className="text-primary hover:underline">🧩 Get the browser extension</Link>
+          <Link to="/share" className="text-primary hover:underline">📲 Use on your phone</Link>
+          <Link to="/help" className="text-danger hover:underline">🚨 Got scammed? Get help</Link>
+        </div>
       </section>
 
       <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

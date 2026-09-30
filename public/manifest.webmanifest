@@ -1,0 +1,15 @@
+{
+  "name": "SafeScan AI",
+  "short_name": "SafeScan",
+  "description": "Your AI Shield Against Digital Scams.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#0e8fb0",
+  "icons": [{ "src": "/favicon.ico", "sizes": "64x64", "type": "image/x-icon" }],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  }
+}

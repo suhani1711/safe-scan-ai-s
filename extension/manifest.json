@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "SafeScan AI",
+  "version": "1.0.0",
+  "description": "Your AI shield against digital scams — warns before you open risky links.",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "action": { "default_popup": "popup.html", "default_title": "SafeScan AI" },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["rules.js", "content.js"], "run_at": "document_idle" }]
+}

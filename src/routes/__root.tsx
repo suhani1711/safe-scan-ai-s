@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteNav } from "../components/SiteNav";
+import { FloatingAssistant } from "../components/FloatingAssistant";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -98,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -132,9 +134,9 @@ function RootComponent() {
           <Outlet />
         </main>
         <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-          🛡️ SafeScan AI — your digital safety shield. Prototype: analysis runs on-device with
-          heuristic AI rules.
+          🛡️ SafeScan AI — Your AI Shield Against Digital Scams. Emergency? Call 1930.
         </footer>
+        <FloatingAssistant />
       </div>
     </QueryClientProvider>
   );
