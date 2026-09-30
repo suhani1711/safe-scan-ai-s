@@ -12,6 +12,8 @@ const LINKS = [
   { to: "/community", label: "Community" },
   { to: "/family", label: "Family" },
   { to: "/dashboard", label: "Dashboard" },
+  { to: "/extension", label: "Extension" },
+  { to: "/help", label: "Help" },
 ] as const;
 
 export function SiteNav() {

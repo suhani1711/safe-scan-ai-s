@@ -1,0 +1,3 @@
+function show(el,r){const c=r.score<40?"#dc2626":r.score<70?"#d97706":"#16a34a";el.innerHTML='<b style="color:'+c+'">'+r.score+'/100</b> — '+r.reasons.join(", ");}
+chrome.tabs.query({active:true,currentWindow:true},([t])=>{const r=safescanScore(t.url||"");document.getElementById("score").textContent=r.score;document.getElementById("score").style.color=r.score<40?"#dc2626":r.score<70?"#d97706":"#16a34a";document.getElementById("why").textContent=r.reasons.join(", ");});
+document.getElementById("go").onclick=()=>show(document.getElementById("out"),safescanScore(document.getElementById("u").value.trim()));

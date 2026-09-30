@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as FamilyRouteImport } from './routes/family'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as ScanLinkRouteImport } from './routes/scan.link'
 import { Route as ScanMailRouteImport } from './routes/scan.mail'
 import { Route as ScanQrRouteImport } from './routes/scan.qr'
@@ -36,6 +37,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const FamilyRoute = FamilyRouteImport.update({
   id: '/family',
   path: '/family',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ScanLinkRoute = ScanLinkRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRoute
   '/dashboard': typeof DashboardRoute
   '/family': typeof FamilyRoute
+  '/help': typeof HelpRoute
   '/scan/link': typeof ScanLinkRoute
   '/scan/mail': typeof ScanMailRoute
   '/scan/qr': typeof ScanQrRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/dashboard'
     | '/family'
+    | '/help'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/dashboard'
     | '/family'
+    | '/help'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/dashboard'
     | '/family'
+    | '/help'
     | '/scan/link'
     | '/scan/mail'
     | '/scan/qr'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRoute
   DashboardRoute: typeof DashboardRoute
   FamilyRoute: typeof FamilyRoute
+  HelpRoute: typeof HelpRoute
   ScanLinkRoute: typeof ScanLinkRoute
   ScanMailRoute: typeof ScanMailRoute
   ScanQrRoute: typeof ScanQrRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/family'
       fullPath: '/family'
       preLoaderRoute: typeof FamilyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/scan/link': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRoute,
   DashboardRoute: DashboardRoute,
   FamilyRoute: FamilyRoute,
+  HelpRoute: HelpRoute,
   ScanLinkRoute: ScanLinkRoute,
   ScanMailRoute: ScanMailRoute,
   ScanQrRoute: ScanQrRoute,
