@@ -1,42 +1,33 @@
 {
-  "manifest_version": 3,
-  "name": "SafeScan AI",
-  "version": "1.0.1",
-  "description": "Your AI shield against digital scams \u2014 warns before you open risky links.",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "tabs"
-  ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "SafeScan AI",
-    "default_icon": {
-      "16": "icon16.png",
-      "32": "icon32.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
-    }
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "rules.js",
-        "content.js"
-      ],
-      "run_at": "document_idle"
-    }
-  ],
-  "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+ "manifest_version": 3,
+ "name": "SafeScan AI Shield",
+ "version": "1.2.0",
+ "description": "A floating shield you control: check the current page or text you select. Nothing is sent anywhere.",
+ "permissions": [
+  "storage"
+ ],
+ "action": {
+  "default_popup": "popup.html",
+  "default_title": "SafeScan AI"
+ },
+ "background": {
+  "service_worker": "background.js"
+ },
+ "content_scripts": [
+  {
+   "matches": [
+    "http://*/*",
+    "https://*/*"
+   ],
+   "js": [
+    "analyze.js",
+    "content.js"
+   ],
+   "run_at": "document_idle"
   }
+ ],
+ "host_permissions": [
+  "http://*/*",
+  "https://*/*"
+ ]
 }
