@@ -8,6 +8,8 @@ export const Route = createFileRoute("/extension")({
       { name: "description", content: "Install the SafeScan Chrome/Edge extension to get warnings before you open dangerous links on any website." },
       { property: "og:title", content: "SafeScan Browser Extension" },
       { property: "og:description", content: "Background protection that warns you before opening risky links." },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Ext,
@@ -35,16 +37,16 @@ function Ext() {
       <PageHeader
         icon="🧩"
         title="Background Protection"
-        subtitle="A website can't watch your other tabs. The SafeScan browser extension can — it checks every link before you open it."
+       subtitle="Keep SafeScan close while you browse with a floating shield for checking pages, links, messages, emails and QR codes."
       />
       <div className="grid gap-6 md:grid-cols-2">
         <div className="glass rounded-2xl p-6">
           <h2 className="font-display text-xl font-semibold">What it does</h2>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>🔗 Warns before you click a dangerous link on any site, including Gmail</li>
-            <li>🚦 Shows a red "!" on the toolbar icon when the current page looks risky</li>
-            <li>🔍 Quick link checker in the popup</li>
-            <li>🔒 Runs on your computer — browsing is never uploaded</li>
+            <li>🛡️ Adds a floating SafeScan shield to websites</li>
+            <li>🔗 Checks the current page, links and selected text</li>
+            <li>📱 Scans SMS messages, emails and QR codes</li>
+            <li>🔒 Runs on your computer — nothing is sent anywhere</li>
           </ul>
           <button onClick={download} className="glow-primary mt-6 w-full rounded-xl bg-primary py-3 font-semibold text-primary-foreground">
             ⬇ Download extension
@@ -56,8 +58,8 @@ function Ext() {
             <li>Unzip the downloaded file.</li>
             <li>Open <code className="font-mono">chrome://extensions</code> (or edge://extensions).</li>
             <li>Turn on <b>Developer mode</b> (top-right).</li>
-            <li>Click <b>Load unpacked</b> and pick the unzipped folder.</li>
-            <li>Click the 🧩 puzzle icon in Chrome's toolbar and press the 📌 pin next to <b>SafeScan AI</b> so the shield stays visible.</li>
+            <li>Click <b>Load unpacked</b> and pick the <b>safescan-ext</b> folder.</li>
+            <li>Reload any open websites. The shield appears in the bottom-right corner.</li>
           </ol>
           <p className="mt-4 text-xs text-muted-foreground">
             Works on computers in Chrome, Edge, Brave and Opera. Phone browsers don't allow background protection, so on your phone use Share to SafeScan instead.

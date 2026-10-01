@@ -1,10 +1,11 @@
-<!doctype html><html><head><meta charset="utf-8"><style>
-body{font-family:system-ui;width:300px;margin:0;padding:16px;background:#f5f8fb;color:#1c2536}
-h1{font-size:16px;margin:0 0 4px}.s{font-size:40px;font-weight:700}.b{padding:8px;border-radius:10px;background:#fff;border:1px solid #dde3ea;margin-top:10px;font-size:12px}
-input{width:100%;box-sizing:border-box;padding:8px;border-radius:8px;border:1px solid #cbd5e1}button{margin-top:6px;width:100%;padding:8px;border:0;border-radius:8px;background:#0e8fb0;color:#fff;font-weight:600;cursor:pointer}
-a{color:#0e8fb0}</style></head><body>
-<h1>🛡️ SafeScan AI</h1><div style="font-size:11px;color:#16a34a">● PROTECTION ACTIVE</div>
-<div class="b"><div>This page</div><div class="s" id="score">–</div><div id="why"></div></div>
-<div class="b"><input id="u" placeholder="Paste a link to check"><button id="go">Check link</button><div id="out"></div></div>
-<p style="font-size:11px"><a href="https://safe-scan-ai-s.lovable.app" target="_blank">Open SafeScan for SMS, email, QR + AI checks →</a></p>
-<script src="rules.js"></script><script src="popup.js"></script></body></html>
+<!doctype html><meta charset="utf-8"><style>body{font:14px system-ui;width:270px;margin:0;padding:16px;background:#0b1020;color:#e8ecf8}
+h1{font-size:16px;margin:0 0 10px}.r{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.sw{position:relative;width:46px;height:26px}.sw input{opacity:0;position:absolute;inset:0;margin:0;cursor:pointer;z-index:2}
+.sw i{position:absolute;inset:0;background:#3a4463;border-radius:99px;transition:.2s}.sw i:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+input:checked+i{background:#2f5bff}input:checked+i:after{transform:translateX(20px)}input:focus-visible+i{outline:2px solid #fff}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g button{background:#131a2e;color:inherit;border:1px solid #25304d;border-radius:10px;padding:12px 6px;min-height:44px;cursor:pointer;font:inherit}.g button:hover{background:#1c2540}
+p{color:#9aa5c0;font-size:12px;margin:12px 0 0}#s{font-weight:700}</style>
+<h1>🛡️ SafeScan AI</h1><div class="r"><span id="s">Shield On</span><label class="sw"><input type="checkbox" id="t" aria-label="Show floating shield on websites"><i></i></label></div>
+<div class="g"><button data-o="link">🔗 Links</button><button data-o="sms">💬 SMS</button><button data-o="email">📧 Mail</button><button data-o="qr">🔳 QR</button></div>
+<button id="snip" style="margin-top:8px;width:100%;background:#131a2e;color:inherit;border:1px solid #25304d;border-radius:10px;padding:12px;min-height:44px;cursor:pointer;font:inherit">✂️ Snip QR on this page</button>
+<p>The switch shows or hides the floating shield on websites. Reload open tabs after installing.</p><script src="popup.js"></script>

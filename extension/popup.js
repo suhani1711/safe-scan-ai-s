@@ -1,3 +1,6 @@
-function show(el,r){const c=r.score<40?"#dc2626":r.score<70?"#d97706":"#16a34a";el.innerHTML='<b style="color:'+c+'">'+r.score+'/100</b> — '+r.reasons.join(", ");}
-chrome.tabs.query({active:true,currentWindow:true},([t])=>{const r=safescanScore(t.url||"");document.getElementById("score").textContent=r.score;document.getElementById("score").style.color=r.score<40?"#dc2626":r.score<70?"#d97706":"#16a34a";document.getElementById("why").textContent=r.reasons.join(", ");});
-document.getElementById("go").onclick=()=>show(document.getElementById("out"),safescanScore(document.getElementById("u").value.trim()));
+const t=document.getElementById("t"),s=document.getElementById("s");
+const paint=v=>{t.checked=v;s.textContent=v?"Shield On":"Shield Off"};
+chrome.storage.local.get("enabled",r=>paint(r.enabled!==false));
+t.onchange=()=>{chrome.storage.local.set({enabled:t.checked});paint(t.checked)};
+document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{chrome.runtime.sendMessage({open:b.dataset.o});window.close()});
+document.getElementById("snip").onclick=()=>{chrome.tabs.query({active:true,currentWindow:true},t=>{if(t[0])chrome.tabs.sendMessage(t[0].id,{snipStart:true},()=>void chrome.runtime.lastError);window.close()})};
