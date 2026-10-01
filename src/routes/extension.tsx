@@ -57,6 +57,7 @@ function Ext() {
             <li>Open <code className="font-mono">chrome://extensions</code> (or edge://extensions).</li>
             <li>Turn on <b>Developer mode</b> (top-right).</li>
             <li>Click <b>Load unpacked</b> and pick the unzipped folder.</li>
+            <li>Click the 🧩 puzzle icon in Chrome's toolbar and press the 📌 pin next to <b>SafeScan AI</b> so the shield stays visible.</li>
           </ol>
           <p className="mt-4 text-xs text-muted-foreground">
             Works on computers in Chrome, Edge, Brave and Opera. Phone browsers don't allow background protection, so on your phone use Share to SafeScan instead.
