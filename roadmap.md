@@ -9,5 +9,5 @@
 - [x] Installable phone app + Share to SafeScan
 - [x] Chrome/Edge extension (link warnings, risk badge, popup checker) + download page
 
-- [ ] Login (email+password, Google, sign up) with profile + saved scan history
-- [ ] Replace Lovable favicon with SafeScan shield logo
+- [x] Login (email+password, Google, sign up) with profile + saved scan history
+- [x] Replace Lovable favicon with SafeScan shield logo
