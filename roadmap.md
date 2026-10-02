@@ -8,3 +8,6 @@
 - [x] Gemini AI second opinion on every result
 - [x] Installable phone app + Share to SafeScan
 - [x] Chrome/Edge extension (link warnings, risk badge, popup checker) + download page
+
+- [x] Login (email+password, Google, sign up) with profile + saved scan history
+- [x] Replace Lovable favicon with SafeScan shield logo

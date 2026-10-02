@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/PageHeader";
 import { RISK_META } from "@/lib/scan-engine";
 import { useStore } from "@/lib/store";
+import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/dashboard")({
 
 function Dashboard() {
   const { scans, reports } = useStore();
+  const { user, name } = useAuth();
 
   const count = (k: string) => scans.filter((s) => s.kind === k).length;
   const byLevel = (l: string) => scans.filter((s) => s.level === l).length;
@@ -31,9 +33,15 @@ function Dashboard() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <PageHeader
         icon="📊"
-        title="Hello, Suhani 👋"
+        title={`Hello, ${user ? name ?? "there" : "Suhani"} 👋`}
         subtitle="Your protection status and everything SafeScan AI checked for you."
       />
+      {!user && (
+        <div className="glass mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4 text-sm">
+          <span>Log in to save your scan history to your account.</span>
+          <Link to="/auth" className="rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground">Log in / Sign up</Link>
+        </div>
+      )}
 
       <div className="glass mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl p-6">
         <div>

@@ -1,5 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 const THEME_KEY = "safescan-theme";
 
@@ -19,6 +21,12 @@ const LINKS = [
 export function SiteNav() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("light");
+  const { user, name } = useAuth();
+  const navigate = useNavigate();
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    navigate({ to: "/", replace: true });
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem(THEME_KEY);
@@ -70,6 +78,19 @@ export function SiteNav() {
           >
             {theme === "light" ? "🌙" : "☀️"}
           </button>
+          {user ? (
+            <button
+              onClick={signOut}
+              title={`Signed in as ${name ?? user.email}`}
+              className="rounded-lg border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:bg-secondary"
+            >
+              👤 {(name ?? "Account").slice(0, 12)} · Log out
+            </button>
+          ) : (
+            <Link to="/auth" className="rounded-lg bg-primary px-3 py-1.5 text-sm font-semibold text-primary-foreground">
+              Log in
+            </Link>
+          )}
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
