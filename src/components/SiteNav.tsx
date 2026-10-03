@@ -125,8 +125,7 @@ export function SiteNav() {
         <nav className="hidden items-center gap-1 md:flex">
           {LINKS.map((l) => (
             <Fragment key={l.to}>
-              {l.to === "/" && (
-                <div key="scan" ref={scanRef} className="relative">
+              {l.to === "/community" && (
                   <button
                     type="button"
                     onClick={() => setScanOpen((o) => !o)}
@@ -209,8 +208,7 @@ export function SiteNav() {
         <nav className="grid gap-1 border-t border-border px-4 py-3 md:hidden">
           {LINKS.map((l) => (
             <Fragment key={l.to}>
-              {l.to === "/" && (
-                <div key="scan" className="rounded-lg border border-border/60">
+              {l.to === "/community" && (
                   <button
                     type="button"
                     onClick={() => setMobileScanOpen((o) => !o)}
