@@ -126,6 +126,7 @@ export function SiteNav() {
           {LINKS.map((l) => (
             <Fragment key={l.to}>
               {l.to === "/community" && (
+                <div key="scan" ref={scanRef} className="relative">
                   <button
                     type="button"
                     onClick={() => setScanOpen((o) => !o)}
@@ -209,6 +210,7 @@ export function SiteNav() {
           {LINKS.map((l) => (
             <Fragment key={l.to}>
               {l.to === "/community" && (
+                <div key="scan" className="rounded-lg border border-border/60">
                   <button
                     type="button"
                     onClick={() => setMobileScanOpen((o) => !o)}
