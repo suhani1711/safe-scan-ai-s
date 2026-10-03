@@ -1,0 +1,21 @@
+{
+  "name": "safescan-ai-desktop",
+  "productName": "SafeScan AI",
+  "version": "1.0.0",
+  "description": "SafeScan AI Desktop - Your AI Shield Against Digital Scams.",
+  "main": "main.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-packager . \"SafeScan AI\" --platform=win32 --arch=x64 --out=dist --overwrite --icon=icon.ico --ignore=^/dist --ignore=^/README.md",
+    "zip": "powershell -NoProfile -Command \"Compress-Archive -Force -Path 'dist/SafeScan AI-win32-x64' -DestinationPath 'dist/SafeScan-AI-win32-x64.zip'\""
+  },
+  "dependencies": {
+    "koffi": "^2.9.0"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^33.2.0"
+  }
+}
