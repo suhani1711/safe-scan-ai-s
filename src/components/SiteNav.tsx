@@ -152,7 +152,7 @@ export function SiteNav() {
                   <ScanMenu
                     open={scanOpen}
                     onPick={() => setScanOpen(false)}
-                    className="absolute left-1/2 top-full mt-2 w-64 -translate-x-1/2"
+                    className="absolute left-0 top-full mt-2 w-64"
                   />
                 </div>
               )}
