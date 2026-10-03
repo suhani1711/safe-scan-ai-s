@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+<style>html,body{margin:0;width:80px;height:80px;background:transparent;overflow:hidden;user-select:none}
+.f{position:absolute;left:12px;top:12px;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;padding:0;
+background:linear-gradient(135deg,#3b5bff,#7c3aed);box-shadow:0 3px 8px rgba(20,30,90,.45);display:grid;place-items:center;transition:transform .15s;touch-action:none}
+.f:hover{transform:scale(1.06)}.f:active{transform:scale(.97)}</style></head><body>
+<button class="f" id="f" aria-label="SafeScan AI shield" title="SafeScan AI - click for menu, drag to move">
+<svg width="28" height="32" viewBox="0 0 30 34"><path d="M15 1 2 6v10c0 8 5.5 14 13 17 7.5-3 13-9 13-17V6z" fill="#5eb3e8" stroke="#f0c14b" stroke-width="2"/><path d="M15 1v32C7.5 30 2 24 2 16V6z" fill="#3b7fd4"/></svg></button>
+<script>
+const b=document.getElementById("f");let down=false,drag=false,sx=0,sy=0,lx=0,ly=0;
+b.addEventListener("pointerdown",e=>{if(e.button!==0)return;down=true;drag=false;sx=lx=e.screenX;sy=ly=e.screenY;b.setPointerCapture(e.pointerId)});
+b.addEventListener("pointermove",e=>{if(!down)return;
+ if(!drag&&Math.hypot(e.screenX-sx,e.screenY-sy)>5){drag=true;ss.send("drag-start")}
+ if(drag){const dx=e.screenX-lx,dy=e.screenY-ly;if(dx||dy){ss.send("drag",{dx,dy});lx=e.screenX;ly=e.screenY}}});
+const up=()=>{if(!down)return;down=false;if(drag)ss.send("drag-end");else ss.send("menu")};
+b.addEventListener("pointerup",up);b.addEventListener("pointercancel",()=>{if(down&&drag)ss.send("drag-end");down=false});
+b.addEventListener("contextmenu",e=>{e.preventDefault();ss.send("menu")});
+</script></body></html>

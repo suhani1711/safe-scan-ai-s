@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src data:; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;cursor:crosshair;user-select:none;background:#000}
+#img{position:fixed;inset:0;width:100vw;height:100vh;object-fit:fill}#dim{position:fixed;inset:0;background:rgba(0,0,0,.35)}
+#box{position:fixed;border:2px solid #5eb3e8;background:rgba(94,179,232,.12);box-shadow:0 0 0 9999px rgba(0,0,0,.35);display:none}
+#hint{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#131a2e;color:#fff;padding:8px 16px;border-radius:99px;font:14px "Segoe UI",system-ui,sans-serif;border:1px solid #25304d}</style></head><body>
+<img id="img" alt=""><div id="dim"></div><div id="box"></div><div id="hint">Drag around the QR code. Press Esc to cancel.</div>
+<script>
+const box=document.getElementById("box"),dim=document.getElementById("dim");let x0=0,y0=0,go=false,r=null;
+ss.on("snip-img",u=>document.getElementById("img").src=u);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")ss.send("snip-done",null)});
+document.addEventListener("pointerdown",e=>{go=true;x0=e.clientX;y0=e.clientY;dim.style.display="none";box.style.display="block";mv(e)});
+const mv=e=>{if(!go)return;r={x:Math.min(x0,e.clientX),y:Math.min(y0,e.clientY),w:Math.abs(e.clientX-x0),h:Math.abs(e.clientY-y0)};Object.assign(box.style,{left:r.x+"px",top:r.y+"px",width:r.w+"px",height:r.h+"px"})};
+document.addEventListener("pointermove",mv);
+document.addEventListener("pointerup",()=>{if(!go)return;go=false;if(!r||r.w<20||r.h<20){box.style.display="none";dim.style.display="block";document.getElementById("hint").textContent="Selection too small. Drag around the QR code, or press Esc.";return}ss.send("snip-done",r)});
+</script></body></html>

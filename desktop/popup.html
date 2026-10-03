@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'self' 'unsafe-inline'">
+<style>*{box-sizing:border-box}html,body{margin:0;background:transparent;overflow:hidden;font:13px/1.45 "Segoe UI",system-ui,sans-serif;color:#e8ecf8}
+.c{margin:2px;background:#131a2e;border:1px solid #25304d;border-radius:16px;padding:14px;position:relative}
+.x{position:absolute;right:8px;top:8px;background:none;border:0;color:#9aa5c0;font-size:16px;cursor:pointer;width:28px;height:28px;border-radius:8px}.x:hover{background:#1c2540}
+h3{margin:0 0 10px;font-size:14px}.row{display:flex;gap:14px;align-items:center}
+.ring{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;flex:none}.ring i{width:62px;height:62px;border-radius:50%;background:#131a2e;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:20px}
+.b{display:inline-block;padding:2px 10px;border-radius:99px;color:#fff;font-weight:700;font-size:12px}
+ul{margin:6px 0;padding-left:18px}.mu{color:#9aa5c0;font-size:11.5px}.bd{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:6px 0;font-size:12px}.bd span:nth-child(odd){color:#9aa5c0}
+.btn{border:0;border-radius:10px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer;color:#fff;background:linear-gradient(135deg,#3b5bff,#7c3aed);margin-top:8px}.g{background:#1c2540}
+.sp{width:22px;height:22px;border:3px solid #25304d;border-top-color:#3b5bff;border-radius:50%;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
+code{font-size:11.5px;color:#9aa5c0;word-break:break-all}</style></head><body><div class="c" id="c"></div>
+<script>
+const c=document.getElementById("c");let cur=null;
+const esc=s=>String(s).replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+const COL={"SAFE":["#16a34a","Safe"],"SUSPICIOUS":["#d97706","Suspicious"],"PHISHING DETECTED":["#dc2626","Phishing Detected"]};
+const fit=()=>requestAnimationFrame(()=>ss.send("pop-size",Math.ceil(c.getBoundingClientRect().height)+4));
+const X='<button class="x" data-a="close" aria-label="Close">✕</button>';
+ss.on("pop",d=>{cur=d;
+ if(d.state==="loading")c.innerHTML=X+'<div class="row"><div class="sp"></div><div><b>Scanning selected text…</b><div class="mu">Copying your selection. Keep it highlighted.</div></div></div>';
+ else if(d.state==="failed")c.innerHTML=X+`<h3>Couldn't scan</h3><p>${esc(d.msg||"Something went wrong.")}</p>${(d.steps||[]).length?`<code>${d.steps.map(esc).join("<br>")}</code>`:""}<div><button class="btn g" data-a="close">Close</button></div>`;
+ else{const r=d.r,k=COL[r.status],trust=100-r.score,lvl=r.score<30?"Low":r.score<60?"Medium":"High";
+  const action=r.status==="SAFE"?"Looks okay. Still never share OTPs or passwords.":r.status==="SUSPICIOUS"?"Don't click or reply. Verify through an official channel.":"Do not click, reply or pay. Delete it and report it (India: call 1930).";
+  c.innerHTML=X+`<h3>${esc(r.type)} scan result</h3><div class="row"><div class="ring" style="background:conic-gradient(${k[0]} ${trust*3.6}deg,#25304d 0)"><i>${trust}</i></div>
+  <div><div class="mu">Trust Score</div><span class="b" style="background:${k[0]}">${k[1]}</span></div></div>
+  <b style="display:block;margin-top:10px">Top reasons</b><ul>${r.indicators.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+  <div class="bd"><span>Risk</span><span>${r.score}/100 · ${lvl}</span><span>Red flags</span><span>${r.indicators[0]&&/^No common/.test(r.indicators[0])?0:r.indicators.length}</span><span>Checked</span><span>${esc(d.text?d.text.length+" characters":r.type)}</span></div>
+  <b>Safe action</b><div>${esc(action)}</div><div class="mu" style="margin-top:6px">Rule-based estimate, not a guarantee. Nothing was opened or uploaded.</div>
+  <button class="btn" data-a="full">Open full scanner</button> <button class="btn g" data-a="close">Close</button>`}
+ fit()});
+c.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;
+ if(b.dataset.a==="full")ss.send("pop-full",{tab:cur&&cur.tab,text:cur&&cur.text});else ss.send("pop-close")});
+</script></body></html>
