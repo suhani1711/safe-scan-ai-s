@@ -27,12 +27,10 @@ function ScanMenu({
   open,
   onPick,
   className,
-  panelClassName,
 }: {
   open: boolean;
   onPick: () => void;
   className?: string;
-  panelClassName?: string;
 }) {
   if (!open) return null;
   return (
@@ -41,7 +39,7 @@ function ScanMenu({
       aria-label="Scanning options"
       className={cn(
         "glass z-50 rounded-xl border border-border p-1.5 shadow-2xl",
-        panelClassName,
+        className,
       )}
     >
       {SCAN_LINKS.map((s) => (
