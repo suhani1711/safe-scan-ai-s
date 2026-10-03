@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
@@ -123,8 +124,8 @@ export function SiteNav() {
 
         <nav className="hidden items-center gap-1 md:flex">
           {LINKS.map((l) => (
-            <>
-              {l.to === "/" && (
+            <Fragment key={l.to}>
+              {l.to === "/community" && (
                 <div key="scan" ref={scanRef} className="relative">
                   <button
                     type="button"
@@ -151,7 +152,7 @@ export function SiteNav() {
                   <ScanMenu
                     open={scanOpen}
                     onPick={() => setScanOpen(false)}
-                    className="absolute left-1/2 top-full mt-2 w-64 -translate-x-1/2"
+                    className="absolute left-0 top-full mt-2 w-64"
                   />
                 </div>
               )}
@@ -165,7 +166,7 @@ export function SiteNav() {
               >
                 {l.label}
               </Link>
-            </>
+            </Fragment>
           ))}
         </nav>
 
@@ -207,8 +208,8 @@ export function SiteNav() {
       {open && (
         <nav className="grid gap-1 border-t border-border px-4 py-3 md:hidden">
           {LINKS.map((l) => (
-            <>
-              {l.to === "/" && (
+            <Fragment key={l.to}>
+              {l.to === "/community" && (
                 <div key="scan" className="rounded-lg border border-border/60">
                   <button
                     type="button"
@@ -253,7 +254,7 @@ export function SiteNav() {
               >
                 {l.label}
               </Link>
-            </>
+            </Fragment>
           ))}
         </nav>
       )}
